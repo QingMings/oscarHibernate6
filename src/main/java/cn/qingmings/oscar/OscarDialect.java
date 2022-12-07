@@ -7,6 +7,7 @@ import org.hibernate.dialect.Dialect;
 import org.hibernate.dialect.function.CommonFunctionFactory;
 import org.hibernate.dialect.identity.IdentityColumnSupport;
 import org.hibernate.dialect.pagination.LimitHandler;
+import org.hibernate.dialect.pagination.LimitLimitHandler;
 import org.hibernate.dialect.sequence.SequenceSupport;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
 import org.hibernate.query.spi.QueryEngine;
@@ -181,12 +182,12 @@ public class OscarDialect extends Dialect {
         return "select * from all_sequences";
     }
 
-    private final LimitHandler limitHandler = new LegacyOscarLimitHandler(getVersion());
+
 
 
     @Override
     public LimitHandler getLimitHandler() {
-        return limitHandler;
+        return LimitLimitHandler.INSTANCE;
     }
 
     @Override
